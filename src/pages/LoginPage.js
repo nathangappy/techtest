@@ -19,7 +19,8 @@ const LoginPage = () => {
     e.preventDefault();
     // Fake login function to mimic a real login request
     const login = await fakeLogin(formData.email, formData.password);
-    if (login.status === 200) {
+    console.log(login);
+    if (login) {
       navigate('/', { replace: true });
     } else {
       console.log('FAILED');

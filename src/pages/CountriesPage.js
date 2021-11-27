@@ -32,37 +32,41 @@ const CountriesPage = ({ user, navigate }) => {
 
   // Filter countries on any change to search text or priority fields
   useEffect(() => {
-    if (searchCountry.length > 0 || typeof priority !== 'string') {
+    if (searchCountry.length > 0 || priority) {
       const filteredCountries = countries.filter((country) => {
         // Filter flow - filters by text, filters by priority, filters by both combined
-        if (searchCountry.length > 0 && !isNaN(priority)) {
+        if (searchCountry.length > 0 && typeof priority === 'number') {
           return (
             country.country_name.toLowerCase().includes(searchCountry.toLowerCase()) &&
             country.priority === priority
           );
         } else if (searchCountry.length > 0) {
           return country.country_name.toLowerCase().includes(searchCountry.toLowerCase());
-        } else if (!isNaN(priority)) {
+        } else if (typeof priority === 'number') {
           return country.priority === priority;
         }
         return countries;
       });
       setFilteredCountries(filteredCountries);
     }
+    if (searchCountry.length === 0 && !priority) {
+      setFilteredCountries(countries);
+    }
   }, [searchCountry, priority, countries]);
 
   // Handle search text
   const handleChange = (e) => {
     setSearchCountry(e.target.value);
-    if (searchCountry.length === 1) {
-      setFilteredCountries(countries);
-    }
   };
 
   // Handle priority filter
   const handlePriority = (e) => {
-    const priority = Number(e.target.value);
-    setPriority(priority);
+    if (e.target.value !== '') {
+      const priority = Number(e.target.value);
+      setPriority(priority);
+    } else {
+      setPriority('');
+    }
   };
 
   return (
@@ -85,7 +89,7 @@ const CountriesPage = ({ user, navigate }) => {
                   </th>
                   <th>
                     <select onChange={handlePriority} name='priority' id='priority'>
-                      <option value='None'>Select Priority</option>
+                      <option value=''>Select Priority</option>
                       {countries.map((country) => (
                         <option key={country.country_id} value={country.priority}>
                           {country.priority}

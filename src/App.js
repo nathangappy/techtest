@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Routes, Route } from 'react-router-dom';
@@ -12,13 +12,15 @@ const App = () => {
   const [user] = useState(localStorage.getItem('user'));
   const pathname = window.location.pathname;
   const navigate = useNavigate();
+  const checkedUser = useRef(false);
 
   // Redirect user to login page if user isn't logged in
   useEffect(() => {
     let isMounted = true;
-    if (!user && isMounted && pathname !== '/login') {
+    if (!user && isMounted && pathname !== '/login' && checkedUser.current) {
       console.log('redirected ');
       navigate('/login', { replace: true });
+      checkedUser.current = true;
     }
     return function cleanup() {
       isMounted = false;
