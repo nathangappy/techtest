@@ -1,0 +1,34 @@
+.CountriesPage {
+  padding: 4rem 2rem;
+  &__container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+  &__table {
+    width: 80%;
+    border-color: black;
+    border-width: 0px 0px 1px 1px;
+    border-spacing: 0;
+    border-style: solid;
+    table-layout: fixed;
+
+    th,
+    td {
+      border-color: black;
+      border-width: 1px 1px 0 0;
+      border-style: solid;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+      width: 50%;
+    }
+  }
+
+  input::placeholder {
+    text-align: center;
+    color: black;
+  }
+}

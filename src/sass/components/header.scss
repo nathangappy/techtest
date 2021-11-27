@@ -1,0 +1,31 @@
+.Header {
+  grid-column: 1 / 11;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+
+  img {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+  }
+
+  h1 {
+    display: inline-block;
+    margin-left: 2rem;
+  }
+
+  button {
+    display: inline-block;
+    justify-self: end;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.LandingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 2rem;
+    width: 60%;
+  }
+}
